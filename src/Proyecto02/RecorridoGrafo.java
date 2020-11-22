@@ -108,8 +108,7 @@ public class RecorridoGrafo {
             if (porVisitar.size() > 0 ) 
             {
                 generarArista(arbolDFS , grafo , porVisitar.peek() ,visitado  );
-            }
-            
+            }            
         }
         return arbolDFS;
     }
