@@ -18,12 +18,7 @@ import java.util.Set;
  * @author Carlos Rolon
  */
 public class GenerarGrafo {
-    
-    public HashMap<Integer,Set<Integer>> CargarGrafoDesdeArch (String rutaArch) {
-        HashMap<Integer,Set<Integer>> grafo = new HashMap<>();
-        return grafo;
-    }
-    
+       
     public void Barabasi_Albert(String rutaArch ,int n , int d  ) throws IOException
     {
         HashMap<Integer,Set<Integer>> grafo =  Metodo_Barabasi_Albert( n ,  d );
