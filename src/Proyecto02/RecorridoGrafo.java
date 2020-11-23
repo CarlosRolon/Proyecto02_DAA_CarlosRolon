@@ -29,10 +29,16 @@ public class RecorridoGrafo {
     }
     
     public void DFS_I (HashMap<Integer,Set<Integer>> grafo, int nodoInicio , String rutaArch) throws IOException {
-        HashMap<Integer,Set<Integer>> arbolBFS = DFS_I_Metodo (grafo , nodoInicio);
-        GrafoaArchivo(arbolBFS , rutaArch);
+        HashMap<Integer,Set<Integer>> arbolDFS = DFS_I_Metodo (grafo , nodoInicio);
+        GrafoaArchivo(arbolDFS , rutaArch);
     }
     
+    public void DFS_R (HashMap<Integer,Set<Integer>> grafo, int nodoInicio , String rutaArch) throws IOException {
+        HashMap<Integer,Set<Integer>> arbolDFS = new HashMap<>();
+        List<Integer> visitado = new ArrayList<>();
+        DFS_R_Metodo( arbolDFS, grafo  , nodoInicio , visitado );
+        GrafoaArchivo(arbolDFS , rutaArch);
+    }
     
     private HashMap<Integer,Set<Integer>>  BFS_Metodo (HashMap<Integer,Set<Integer>> grafo, int nodoInicio) {      
         HashMap<Integer,Set<Integer>> arbolBFS = new HashMap<>();
@@ -84,8 +90,27 @@ public class RecorridoGrafo {
         writer.close();
         
     }
-
-   
+     
+    public static void DFS_R_Metodo( HashMap<Integer,Set<Integer>> arbolDFS, HashMap<Integer,Set<Integer>> grafo  , int nodoActual ,List<Integer> visitado ){
+        visitado.add(nodoActual);        
+        Set<Integer> adyacentes = grafo.get(nodoActual);
+      
+        for(Integer a : adyacentes){                
+            if( !visitado.contains(a) ){
+                
+                if(arbolDFS.containsKey(nodoActual)){
+                    Set<Integer> v = arbolDFS.get(nodoActual);
+                    v.add(a);
+                }else{
+                    Set<Integer> newV = new HashSet<>();
+                    newV.add(a);
+                    arbolDFS.put(nodoActual,newV);
+                }                
+                DFS_R_Metodo( arbolDFS,  grafo  ,  a ,  visitado );
+            }
+        }
+    }
+     
     private HashMap<Integer,Set<Integer>>  DFS_I_Metodo (HashMap<Integer,Set<Integer>> grafo, int nodoInicio) {
         HashMap<Integer,Set<Integer>> arbolDFS = new HashMap<>();
         List<Integer> visitado = new ArrayList<>();
