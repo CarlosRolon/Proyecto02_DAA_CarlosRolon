@@ -126,7 +126,7 @@ public class RecorridoGrafo {
             if ( visitado.contains(nodoActual)) {
                 continue;
             }
-            //Agrega el nodo a visitados
+            //Agrega el nodo a visitados 
             visitado.add(nodoActual); 
             
             //Obtiene las conexiones del nodo
@@ -156,7 +156,6 @@ public class RecorridoGrafo {
         boolean seCreoConexion = false;
         int nodo ;
         for (int x =  visitado.size()-1; x >= 0 && !seCreoConexion; x-- )
-        //for (int x =  0; x < visitado.size() && !seCreoConexion; x++ )
         {
             nodo = visitado.get(x) ;
             Set<Integer> conexiones = grafo.get(nodo);
