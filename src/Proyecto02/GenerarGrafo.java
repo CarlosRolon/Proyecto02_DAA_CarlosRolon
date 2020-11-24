@@ -18,6 +18,11 @@ import java.util.Set;
  * @author Carlos Rolon
  */
 public class GenerarGrafo {
+    
+    public void EscribirGrafo(String rutaArch , HashMap<Integer,Set<Integer>> grafo  ) throws IOException
+    {
+        GrafoaArchivo(grafo , rutaArch);
+    }
        
     public void Barabasi_Albert(String rutaArch ,int n , int d  ) throws IOException
     {
@@ -45,7 +50,7 @@ public class GenerarGrafo {
         
    // Metodos de creacion de grafos
   
-     private static  HashMap<Integer,Set<Integer>>  Metodo_Barabasi_Albert(int n , int d ){
+     public static  HashMap<Integer,Set<Integer>>  Metodo_Barabasi_Albert(int n , int d ){
         HashMap<Integer,Set<Integer>> grafo = new HashMap<>();
         double probNodo,probRandom ;
         double nV = 0 , grado;
@@ -91,7 +96,7 @@ public class GenerarGrafo {
     }  
    
      
-    private static  HashMap<Integer,Set<Integer>>  Metodo_GeograficoSimple(int n , double r )
+    public static  HashMap<Integer,Set<Integer>>  Metodo_GeograficoSimple(int n , double r )
     {
         HashMap<Integer,Set<Integer>> grafo = new HashMap<>();
         double [][]posiciones =  new double[n][2];
@@ -121,7 +126,7 @@ public class GenerarGrafo {
         return grafo;
     }
     
-    private static  HashMap<Integer,Set<Integer>>  Metodo_ErdosRenyi(int n , int m ){
+    public static  HashMap<Integer,Set<Integer>>  Metodo_ErdosRenyi(int n , int m ){
         HashMap<Integer,Set<Integer>> grafo = new HashMap<>();
         int numero1 , numero2;
         //Genera Nodos 
@@ -146,7 +151,7 @@ public class GenerarGrafo {
     }
     
     
-    private static  HashMap<Integer,Set<Integer>>  Metodo_Gilbert(int n , double p ){
+    public static  HashMap<Integer,Set<Integer>>  Metodo_Gilbert(int n , double p ){
         HashMap<Integer,Set<Integer>> grafo = new HashMap<>();
         double probablidad;
 
