@@ -127,7 +127,7 @@ public class RecorridoGrafo {
                 continue;
             }
             //Agrega el nodo a visitados
-            visitado.add(nodoActual);
+            visitado.add(nodoActual); 
             
             //Obtiene las conexiones del nodo
             Set<Integer> ady = grafo.get(nodoActual);      
