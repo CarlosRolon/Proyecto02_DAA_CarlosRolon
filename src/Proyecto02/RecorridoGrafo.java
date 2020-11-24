@@ -119,18 +119,32 @@ public class RecorridoGrafo {
         porVisitar.push(nodoInicio);
         
         while(  0 < porVisitar.size() ){
+            //Obtiene el nodo que tiene que visitar
             nodoActual = porVisitar.peek();
             porVisitar.pop();
+            // Verifica que el nodo no sea visitado
+            if ( visitado.contains(nodoActual)) {
+                continue;
+            }
+            //Agrega el nodo a visitados
             visitado.add(nodoActual);
-            Set<Integer> adyacentes = grafo.get(nodoActual);            
-             for(Integer a : adyacentes){
+            
+            //Obtiene las conexiones del nodo
+            Set<Integer> ady = grafo.get(nodoActual);      
+            List<Integer> adyacentes = new ArrayList<>(ady);
+            
+            // Itera sobre las conexiones del nodo
+            for (int x =  adyacentes.size()-1; x >= 0; x-- )
+            {
+                int a = adyacentes.get(x);
                 
-                if( !visitado.contains(a) && !porVisitar.contains(a)){
+                if( !visitado.contains(a) ){
+                    //Agrega a nodo por visitar a una cola
                     porVisitar.push(a);
                 }
             }
              
-            if (porVisitar.size() > 0 ) 
+            if (porVisitar.size() > 0 &&  !visitado.contains( porVisitar.peek() ) ) 
             {
                 generarArista(arbolDFS , grafo , porVisitar.peek() ,visitado  );
             }            
@@ -142,6 +156,7 @@ public class RecorridoGrafo {
         boolean seCreoConexion = false;
         int nodo ;
         for (int x =  visitado.size()-1; x >= 0 && !seCreoConexion; x-- )
+        //for (int x =  0; x < visitado.size() && !seCreoConexion; x++ )
         {
             nodo = visitado.get(x) ;
             Set<Integer> conexiones = grafo.get(nodo);
